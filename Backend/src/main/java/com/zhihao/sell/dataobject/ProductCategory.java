@@ -12,16 +12,21 @@ import java.util.Date;
  * Class ProductCategory, contains all the rows of the ProductCategory table in database.
  */
 
+// Mapping from DB to Java.
 @Entity
+
+// Use to update time.
 @DynamicUpdate
+
+// Lombok annotation, save the trouble of creating getter and setter every time.
 @Data
 public class ProductCategory {
 
   /**
    * category id.
    */
-  @Id
-  @GeneratedValue
+  @Id // key
+  @GeneratedValue // auto-increment
   private Integer categoryId;
 
   /**
