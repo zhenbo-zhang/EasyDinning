@@ -1,0 +1,52 @@
+{
+  "errno": 0,
+  "data": {
+    "name": "Chinese Food",
+    "description": "Delivery",
+    "deliveryTime": 38,
+    "score": 4.2,
+    "serviceScore": 4.1,
+    "foodScore": 4.3,
+    "rankRate": 69.2,
+    "minPrice": 0,
+    "deliveryPrice": 0,
+    "ratingCount": 24,
+    "sellCount": 90,
+    "bulletin": "It is a long established fact that a reader.assages of Lorem Ipsum availablassages of Lorem Ipsum availablassages of Lorem Ipsum availablassages of Lorem Ipsum availablassages of Lorem Ipsum availablassages of Lorem Ipsum availabl",
+    "supports": [
+      {
+        "type": 0,
+        "description": "passages of Lorem Ipsum available"
+      },
+      {
+        "type": 1,
+        "description": "Contrary to popular belief. "
+      },
+      {
+        "type": 2,
+        "description": "The standard chunk of Lorem Ipsum used since the "
+      },
+      {
+        "type": 3,
+        "description": "Lorem Ipsum has been the industry's standard dummy text"
+      },
+      {
+        "type": 4,
+        "description": " Lorem Ipsum comes from sections 1.10.32 and 1.10.33"
+      }
+    ],
+    "avatar": "https://s5.sinaimg.cn/mw690/001rzOXkzy6WFGGP6oA14&690",
+    "pics": [
+      "https://pic1.qyer.com/album/user/1102/50/QEhVQB8HY04/index/710x360",
+      "https://img2.secretchina.com/pic/2017/5-15/p1669191a729054286-ss.jpg",
+      "https://homesitetask.zbjimg.com/homesite/task/4.jpg/origine/3fb5f04d-a0f2-4e8d-88bd-73196ca39dba",
+      "https://img.bangli.us/images/cms/2016/11/135810_3.jpg"
+    ],
+    "infos": [
+      "The standard chunk of Lorem Ipsum used since ",
+      "All the Lorem Ipsum generators on the Internet tend to repeat predefined",
+      "Hope 700, Seattle, WA, 98109",
+      "Open Time:10:00-20:30"
+    ]
+  }
+}
