@@ -80,6 +80,7 @@ public class ProductServiceImpl implements ProductService {
   }
 
   @Override
+  // Roll back if there is exception.
   @Transactional
   public void decreaseStock(List<CartDTO> cartDTOList) {
     for (CartDTO cartDTO : cartDTOList) {
