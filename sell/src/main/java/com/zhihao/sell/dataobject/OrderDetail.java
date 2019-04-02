@@ -6,22 +6,46 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 
+/**
+ * Class OrderDetail, which contains all the information of the details of an order.
+ */
 @Entity
 @Data
 public class OrderDetail {
 
-    @Id
-    private String detailId;
+  /**
+   * ID of the detail.
+   */
+  @Id
+  private String detailId;
 
-    private String orderId;
+  /**
+   * ID of the order.
+   */
+  private String orderId;
 
-    private String productId;
+  /**
+   * ID of the product.
+   */
+  private String productId;
 
-    private String productName;
+  /**
+   * Name of the product.
+   */
+  private String productName;
 
-    private BigDecimal productPrice;
+  /**
+   * Price of the product.
+   */
+  private BigDecimal productPrice;
 
-    private Integer productQuantity;
+  /**
+   * Quantity of the product.
+   */
+  private Integer productQuantity;
 
-    private String productIcon;
+  /**
+   * Icon of the product.
+   */
+  private String productIcon;
 }
