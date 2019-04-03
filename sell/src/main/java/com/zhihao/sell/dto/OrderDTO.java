@@ -66,13 +66,15 @@ public class OrderDTO {
   private Date createTime;
 
   /**
-   * Update time of the order.
+   * Update time of the order. Using JsonSerialize to convert time to its proper representation
+   * (/1000).
    */
   @JsonSerialize(using = Date2LongSerializer.class)
   private Date updateTime;
 
   /**
-   * List of order details.
+   * List of order details. Using JsonSerialize to convert time to its proper representation
+   * (/1000).
    */
   List<OrderDetail> orderDetailList;
 
