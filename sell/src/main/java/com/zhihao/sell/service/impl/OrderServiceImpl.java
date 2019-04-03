@@ -51,6 +51,11 @@ public class OrderServiceImpl implements OrderService {
   @Autowired
   private WebSocket webSocket;
 
+  /**
+   * Create a new order.
+   * @param orderDTO
+   * @return
+   */
   @Override
   // Roll back if there is exception.
   @Transactional
@@ -100,8 +105,14 @@ public class OrderServiceImpl implements OrderService {
     return orderDTO;
   }
 
+  /**
+   * Find a order base on an order id.
+   * @param orderId - the order id to check
+   * @return a order base on an order id
+   */
   @Override
   public OrderDTO findOne(String orderId) {
+    // Check whether the order exists or not.
     OrderMaster orderMaster = orderMasterRepository.findOne(orderId);
     if (orderMaster == null) {
       throw new SellException(ResultEnum.ORDER_NOT_EXIST);
