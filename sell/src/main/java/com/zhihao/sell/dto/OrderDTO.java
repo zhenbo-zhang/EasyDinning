@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Data Transfer Object of Order
+ * Data Transfer Object of Order (to and from front end)
  */
 @Data
 public class OrderDTO {
