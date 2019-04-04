@@ -78,11 +78,23 @@ public class OrderDTO {
    */
   List<OrderDetail> orderDetailList;
 
+  /**
+   * Get the Enum Constant based on the order status.
+   *
+   * @return the Enum Constant based on the order status
+   */
+  // This method will be ignored when change to json
   @JsonIgnore
   public OrderStatusEnum getOrderStatusEnum() {
     return EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
   }
 
+  /**
+   * Get the Enum Constant based on the pay status.
+   *
+   * @return the Enum Constant based on the pay status
+   */
+  // This method will be ignored when change to json
   @JsonIgnore
   public PayStatusEnum getPayStatusEnum() {
     return EnumUtil.getByCode(payStatus, PayStatusEnum.class);
