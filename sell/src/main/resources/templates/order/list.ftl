@@ -57,6 +57,7 @@
                         <li><a href="/sell/seller/order/list?page=${currentPage - 1}&size=${size}">Prev</a></li>
                     </#if>
 
+                      <#--1 - some page-->
                     <#list 1..orderDTOPage.getTotalPages() as index>
                         <#if currentPage == index>
                             <li class="disabled"><a href="#">${index}</a></li>
