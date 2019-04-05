@@ -26,6 +26,7 @@ public class SellerOrderController {
 
   /**
    * List order.
+   *
    * @param page - page, start from 1
    * @param size - how many data in one page
    * @param map - a map to store result
@@ -49,10 +50,11 @@ public class SellerOrderController {
 
 
   /**
-   * Cancel the order
-   * @param orderId
-   * @param map
-   * @return
+   * Cancel an order.
+   *
+   * @param orderId - the id of the order to be canceled
+   * @param map - map used in ftl
+   * @return a ModelAndView object
    */
   @GetMapping("/cancel")
   public ModelAndView cancel(@RequestParam("orderId") String orderId,
@@ -62,17 +64,24 @@ public class SellerOrderController {
       orderService.cancel(orderDTO);
     } catch (SellException e) {
       log.error("【Cancel Order】Unexpected Error{}", e);
+      // Transfer error message and redirected url to the error template
       map.put("msg", e.getMessage());
       map.put("url", "/sell/seller/order/list");
       return new ModelAndView("common/error", map);
     }
-
+    // Canceling the order is successful right now
     map.put("msg", ResultEnum.ORDER_CANCEL_SUCCESS.getMessage());
     map.put("url", "/sell/seller/order/list");
     return new ModelAndView("common/success");
   }
 
-  // order detail
+  /**
+   * Check the detail of an order.
+   *
+   * @param orderId - the id of the order
+   * @param map - the map used to transfer data to template
+   * @return an ModelAndView object
+   */
 
   @GetMapping("/detail")
   public ModelAndView detail(@RequestParam("orderId") String orderId,
