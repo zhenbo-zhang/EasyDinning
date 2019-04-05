@@ -1,6 +1,6 @@
 package com.zhihao.sell.controller;
 
-import com.imooc.sell.dataobject.ProductCategory;
+import com.zhihao.sell.dataobject.ProductCategory;
 import com.imooc.sell.dataobject.ProductInfo;
 import com.imooc.sell.exception.SellException;
 import com.imooc.sell.form.ProductForm;
