@@ -65,6 +65,11 @@ public class ProductServiceImpl implements ProductService {
   }
 
 
+  /**
+   * Increase the stock of the products in the list.
+   *
+   * @param cartDTOList - a list of cart DTO
+   */
   @Override
   @Transactional
   public void increaseStock(List<CartDTO> cartDTOList) {
@@ -79,6 +84,11 @@ public class ProductServiceImpl implements ProductService {
     }
   }
 
+  /**
+   * Decrease the stock of a lot of cart DTO.
+   *
+   * @param cartDTOList - a list of cart DTO
+   */
   @Override
   // Roll back if there is exception.
   @Transactional
@@ -97,6 +107,12 @@ public class ProductServiceImpl implements ProductService {
     }
   }
 
+  /**
+   * Change the status of the product from off sale to on sale.
+   *
+   * @param productId - the id of the product
+   * @return the product info
+   */
   @Override
   public ProductInfo onSale(String productId) {
     ProductInfo productInfo = repository.findOne(productId);
@@ -112,6 +128,12 @@ public class ProductServiceImpl implements ProductService {
     return repository.save(productInfo);
   }
 
+  /**
+   * Change the status of the product from on sale to off sale.
+   *
+   * @param productId - the id of the product
+   * @return the product info
+   */
   @Override
   public ProductInfo offSale(String productId) {
     ProductInfo productInfo = repository.findOne(productId);

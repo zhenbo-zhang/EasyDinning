@@ -70,7 +70,7 @@ public class ProductInfo {
   private Date updateTime;
 
   /**
-   * Constructor of
+   * Get the status of the product.
    * @return
    */
   @JsonIgnore

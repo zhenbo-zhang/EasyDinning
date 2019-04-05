@@ -40,16 +40,32 @@ public interface ProductService {
    */
   ProductInfo save(ProductInfo productInfo);
 
-  /*add stock*/
+  /**
+   * Add Stock.
+   *
+   * @param cartDTOList - a list of cart DTO
+   */
   void increaseStock(List<CartDTO> cartDTOList);
 
-  /*decrease stock*/
+  /**
+   * Decrease Stock.
+   *
+   * @param cartDTOList - a list of cart DTO
+   */
   void decreaseStock(List<CartDTO> cartDTOList);
 
-  // on sale
+  /**
+   * Change the status of the product from off sale to on sale.
+   * @param productId - the id of the product
+   * @return the product info
+   */
   ProductInfo onSale(String productId);
 
-  // off sale
+  /**
+   * Change the status of the product from on sale to off sale.
+   * @param productId - the id of the product
+   * @return the product info
+   */
   ProductInfo offSale(String productId);
 
 }
