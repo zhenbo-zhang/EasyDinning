@@ -47,8 +47,13 @@ public class SellerOrderController {
     return new ModelAndView("order/list", map);
   }
 
-  //cancel order
 
+  /**
+   * Cancel the order
+   * @param orderId
+   * @param map
+   * @return
+   */
   @GetMapping("/cancel")
   public ModelAndView cancel(@RequestParam("orderId") String orderId,
       Map<String, Object> map) {
