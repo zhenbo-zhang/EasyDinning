@@ -37,6 +37,7 @@ public class SellerProductController {
 
   /**
    * List all the product for the seller.
+   *
    * @param page - which page to return
    * @param size - how many items in one page
    * @param map - map used to transfer data to template
@@ -56,6 +57,7 @@ public class SellerProductController {
 
   /**
    * Controller for on sale.
+   *
    * @param productId - the id of the product
    * @param map - used to transfer data to template
    * @return an ModelAndView object
@@ -75,8 +77,14 @@ public class SellerProductController {
     return new ModelAndView("common/success", map);
   }
 
-  //off sale
 
+  /**
+   * Controller for off sale.
+   *
+   * @param productId - the id of the product
+   * @param map - used to transfer data to template
+   * @return an ModelAndView object
+   */
   @RequestMapping("/off_sale")
   public ModelAndView offSale(@RequestParam("productId") String productId,
       Map<String, Object> map) {
@@ -92,8 +100,13 @@ public class SellerProductController {
     return new ModelAndView("common/success", map);
   }
 
-  //
 
+  /**
+   * Get a particular product.
+   * @param productId - the id of the product
+   * @param map - the map used to transfer data to front end.
+   * @return a particular product
+   */
   @GetMapping("/index")
   public ModelAndView index(@RequestParam(value = "productId", required = false) String productId,
       Map<String, Object> map) {
