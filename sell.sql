@@ -50,3 +50,14 @@ create table `order_detail` (
     primary key (`detail_id`),
     key `idx_order_id` (`order_id`)
 );
+
+-- Seller(Used to login the backend administration system)
+create table `seller_info` (
+    `id` varchar(32) not null,
+    `username` varchar(32) not null,
+    `password` varchar(32) not null,
+    `openid` varchar(64) not null comment 'openid of wechat',
+    `create_time` timestamp not null default current_timestamp comment 'create time',
+    `update_time` timestamp not null default current_timestamp on update current_timestamp comment 'update time',
+    primary key (`id`)
+) comment 'Information of Seller';
