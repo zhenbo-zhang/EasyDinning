@@ -4,7 +4,7 @@
 <body>
 <div id="wrapper" class="toggled">
 
-<#--sidebar-->
+<#--Introduce sidebar-->
     <#include "../common/nav.ftl">
 
 <#--main content-->
@@ -107,22 +107,26 @@
 
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<#--Configure websocket client side below-->
 <script>
     var websocket = null;
+    // If websocket exists in the browser
     if('WebSocket' in window) {
         websocket = new WebSocket('ws://localhost:8080/sell/webSocket');
-    }else {
+    } else {
         alert("You browser doesn't support websocket!");
     }
-
+    // websocket is open
     websocket.onopen = function (event) {
         console.log('Connected');
     }
 
+    // websocket is closed
     websocket.onclose = function (event) {
         console.log('Connection Closed');
     }
 
+    // when there is message
     websocket.onmessage = function (event) {
         console.log('Get a Message:' + event.data)
         //pop ups shows, and play music
@@ -131,10 +135,12 @@
         document.getElementById('notice').play();
     }
 
+    // when there is error
     websocket.onerror = function () {
         alert('websocket Errors！');
     }
 
+    // close websocket when closing browser
     window.onbeforeunload = function () {
         websocket.close();
     }
