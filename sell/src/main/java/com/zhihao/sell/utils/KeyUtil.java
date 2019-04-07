@@ -2,13 +2,17 @@ package com.zhihao.sell.utils;
 
 import java.util.Random;
 
+/**
+ * Utility class used to generate random key.
+ */
 public class KeyUtil {
-    //generate unique key
-    public static synchronized String genUniqueKey() {
-        Random random = new Random();
 
-        Integer number = random.nextInt(900000) + 100000;
+  // Generate unique key (Time + random number).
+  public static synchronized String genUniqueKey() {
+    Random random = new Random();
 
-        return System.currentTimeMillis() + String.valueOf(number);
-    }
+    Integer number = random.nextInt(900000) + 100000;
+
+    return System.currentTimeMillis() + String.valueOf(number);
+  }
 }

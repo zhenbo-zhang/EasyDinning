@@ -100,7 +100,13 @@ public class SellerOrderController {
     return new ModelAndView("order/detail", map);
   }
 
-  // finish order
+  /**
+   * Finish the order.
+   *
+   * @param orderId - the id of the order
+   * @param map - the map used to transfer data to template
+   * @return an ModelAndView object
+   */
 
   @GetMapping("/finish")
   public ModelAndView finished(@RequestParam("orderId") String orderId,

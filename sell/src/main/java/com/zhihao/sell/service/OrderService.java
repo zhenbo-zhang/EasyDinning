@@ -1,23 +1,32 @@
 package com.zhihao.sell.service;
 
-import com.imooc.sell.dto.OrderDTO;
 import com.zhihao.sell.dto.OrderDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+/**
+ * Interface OrderService.
+ */
 public interface OrderService {
 
-    OrderDTO create(OrderDTO orderMaster);
+  // Create new order.
+  OrderDTO create(OrderDTO orderMaster);
 
-    OrderDTO findOne(String orderId);
+  // Find one order.
+  OrderDTO findOne(String orderId);
 
-    Page<OrderDTO> findList(String buyerOpenid, Pageable pageable);
+  // Find list of orders with the open id of the buyer.
+  Page<OrderDTO> findList(String buyerOpenid, Pageable pageable);
 
-    OrderDTO cancel(OrderDTO orderDTO);
+  // Cancel the order.
+  OrderDTO cancel(OrderDTO orderDTO);
 
-    OrderDTO finish(OrderDTO orderDTO);
+  // Finish the order.
+  OrderDTO finish(OrderDTO orderDTO);
 
-    OrderDTO paid(OrderDTO orderDTO);
+  // Pay for the order.
+  OrderDTO paid(OrderDTO orderDTO);
 
-    Page<OrderDTO> findList(Pageable pageable);
+  // Find list of orders.
+  Page<OrderDTO> findList(Pageable pageable);
 }

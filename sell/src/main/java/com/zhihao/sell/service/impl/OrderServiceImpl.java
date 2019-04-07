@@ -53,8 +53,6 @@ public class OrderServiceImpl implements OrderService {
 
   /**
    * Create a new order.
-   * @param orderDTO
-   * @return
    */
   @Override
   // Roll back if there is exception.
@@ -99,7 +97,7 @@ public class OrderServiceImpl implements OrderService {
     ).collect(Collectors.toList());
     productService.decreaseStock(cartDTOList);
 
-    // 6. send web socket message
+    // 6. send web socket message when a new order is created
     webSocket.sendMessage(orderDTO.getOrderId());
 
     return orderDTO;
@@ -107,6 +105,7 @@ public class OrderServiceImpl implements OrderService {
 
   /**
    * Find a order base on an order id.
+   *
    * @param orderId - the order id to check
    * @return a order base on an order id
    */
@@ -127,6 +126,13 @@ public class OrderServiceImpl implements OrderService {
     return orderDTO;
   }
 
+  /**
+   * Return the list of order.
+   *
+   * @param buyerOpenid - the open id of the user
+   * @param pageable - the Pageable object
+   * @return the list of order
+   */
   @Override
   public Page<OrderDTO> findList(String buyerOpenid, Pageable pageable) {
     Page<OrderMaster> orderMasterPage = orderMasterRepository
@@ -136,12 +142,18 @@ public class OrderServiceImpl implements OrderService {
     return new PageImpl<>(orderDTOList, pageable, orderMasterPage.getTotalElements());
   }
 
+  /**
+   * Cancel the order.
+   *
+   * @param orderDTO - the order to cancel
+   * @return the order DTO
+   */
   @Override
   @Transactional
   public OrderDTO cancel(OrderDTO orderDTO) {
     OrderMaster orderMaster = new OrderMaster();
 
-    // check order status
+    // check order status (Only new orders can be canceled)
     if (!orderDTO.getOrderStatus().equals(OrderStatusEnum.NEW.getCode())) {
       log.error("【Cancel Order】Wrong Order Status，orderId={}, orderStatus={}",
           orderDTO.getOrderId(), orderDTO.getOrderStatus());
@@ -157,7 +169,7 @@ public class OrderServiceImpl implements OrderService {
       throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
     }
 
-    // stock
+    // check stock
     if (CollectionUtils.isEmpty(orderDTO.getOrderDetailList())) {
       log.error("【Cancel Order】No Order Detail Available, orderDTO={}", orderDTO);
       throw new SellException(ResultEnum.ORDER_DETAIL_EMPTY);
@@ -166,21 +178,27 @@ public class OrderServiceImpl implements OrderService {
         .map(e -> new CartDTO(e.getProductId(), e.getProductQuantity()))
         .collect(Collectors.toList());
     productService.increaseStock(cartDTOList);
-
+    // return the order DTO that has been taken care of
     return orderDTO;
   }
 
+  /**
+   * Finish the order.
+   *
+   * @param orderDTO - the finished order
+   * @return the DTO of the finished order
+   */
   @Override
   @Transactional
   public OrderDTO finish(OrderDTO orderDTO) {
-    // check order status
+    // check order status (only new order can be finished)
     if (!orderDTO.getOrderStatus().equals(OrderStatusEnum.NEW.getCode())) {
       log.error("【Finish Order】Wrong Order Status, orderId={}, orderStatus={}",
           orderDTO.getOrderId(), orderDTO.getOrderStatus());
       throw new SellException(ResultEnum.ORDER_STATUS_ERROR);
     }
 
-    // chang status
+    // change status
     orderDTO.setOrderStatus(OrderStatusEnum.FINISHED.getCode());
     OrderMaster orderMaster = new OrderMaster();
     BeanUtils.copyProperties(orderDTO, orderMaster);
@@ -193,6 +211,12 @@ public class OrderServiceImpl implements OrderService {
     return orderDTO;
   }
 
+  /**
+   * Pay for the order.
+   *
+   * @param orderDTO - the order to pay
+   * @return the paid order
+   */
   @Override
   @Transactional
   public OrderDTO paid(OrderDTO orderDTO) {
@@ -222,6 +246,12 @@ public class OrderServiceImpl implements OrderService {
     return orderDTO;
   }
 
+  /**
+   * Return all the products (Used by seller).
+   *
+   * @param pageable - a Pageable object
+   * @return all the products (Used by seller)
+   */
   @Override
   public Page<OrderDTO> findList(Pageable pageable) {
     Page<OrderMaster> orderMasterPage = orderMasterRepository.findAll(pageable);

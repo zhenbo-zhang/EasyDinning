@@ -8,10 +8,15 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 import java.util.Date;
 
+/**
+ * Utility Class Date2LongSerializer, which is used to convert time to its proper representation.
+ */
+
 public class Date2LongSerializer extends JsonSerializer<Date> {
 
-    @Override
-    public void serialize(Date date, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
-        jsonGenerator.writeNumber(date.getTime() / 1000);
-    }
+  @Override
+  public void serialize(Date date, JsonGenerator jsonGenerator,
+      SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
+    jsonGenerator.writeNumber(date.getTime() / 1000);
+  }
 }

@@ -9,6 +9,7 @@ import com.zhihao.sell.service.ProductService;
 import com.zhihao.sell.utils.KeyUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -134,8 +135,12 @@ public class SellerProductController {
    * @return an ModelAndView object
    */
   @PostMapping("/save")
-  // Cache put will still enter the code, the returned value will be put into cache.
-  @CachePut(cacheNames = "product", key = "123")
+//   Cache put will still enter the code, the returned value will be put into cache.
+//   So, it is used for update.
+//  @CachePut(cacheNames = "product", key = "123")
+  // This annotation will delete the cache every time the value it is updated.
+  // So, the cache will be refreshed when enter the list method again.
+  @CacheEvict(cacheNames = "product", key = "123")
   public ModelAndView save(@Valid ProductForm form,
       BindingResult bindingResult,
       Map<String, Object> map) {
