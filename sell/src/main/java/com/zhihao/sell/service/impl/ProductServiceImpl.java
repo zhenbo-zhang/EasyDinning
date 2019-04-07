@@ -8,6 +8,8 @@ import com.zhihao.sell.exception.SellException;
 import com.zhihao.sell.repository.ProductInfoRepository;
 import com.zhihao.sell.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,8 @@ public class ProductServiceImpl implements ProductService {
    * @return one Product
    */
   @Override
+  @Cacheable(cacheNames = "product", key = "123")
+  // if not including key, it will automatically be filled with the argument, which is productId.
   public ProductInfo findOne(String productId) {
     return repository.findOne(productId);
   }
@@ -60,6 +64,7 @@ public class ProductServiceImpl implements ProductService {
    * @return the saved ProductInfo
    */
   @Override
+  @CachePut(cacheNames = "product", key = "123")
   public ProductInfo save(ProductInfo productInfo) {
     return repository.save(productInfo);
   }

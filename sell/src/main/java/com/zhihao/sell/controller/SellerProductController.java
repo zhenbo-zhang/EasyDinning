@@ -9,6 +9,7 @@ import com.zhihao.sell.service.ProductService;
 import com.zhihao.sell.utils.KeyUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -102,7 +103,8 @@ public class SellerProductController {
 
 
   /**
-   * Get a particular product.
+   * Get a particular product and can also be used to add a new product.
+   *
    * @param productId - the id of the product
    * @param map - the map used to transfer data to front end.
    * @return a particular product
@@ -115,16 +117,25 @@ public class SellerProductController {
       map.put("productInfo", productInfo);
     }
 
-    // check all categories
+    // Check all categories
     List<ProductCategory> categoryList = categoryService.findAll();
     map.put("categoryList", categoryList);
 
     return new ModelAndView("product/index", map);
   }
 
-  // save and update
 
+  /**
+   * Save and update.
+   *
+   * @param form - form object used to handle data submitted from form
+   * @param bindingResult - used to check error
+   * @param map - used to transfer data to front end
+   * @return an ModelAndView object
+   */
   @PostMapping("/save")
+  // Cache put will still enter the code, the returned value will be put into cache.
+  @CachePut(cacheNames = "product", key = "123")
   public ModelAndView save(@Valid ProductForm form,
       BindingResult bindingResult,
       Map<String, Object> map) {
@@ -136,11 +147,14 @@ public class SellerProductController {
 
     ProductInfo productInfo = new ProductInfo();
     try {
+      // Check whether it is add new product or update existing object
       if (!StringUtils.isEmpty(form.getProductId())) {
         productInfo = productService.findOne(form.getProductId());
       } else {
+        // the id of new added product is null at first, we assign a random id to it
         form.setProductId(KeyUtil.genUniqueKey());
       }
+      // overwrite corresponding field with values transferred from front end
       BeanUtils.copyProperties(form, productInfo);
       productService.save(productInfo);
     } catch (SellException e) {
@@ -148,7 +162,6 @@ public class SellerProductController {
       map.put("url", "/sell/seller/product/index");
       return new ModelAndView("common/error", map);
     }
-
     map.put("url", "/sell/seller/product/list");
     return new ModelAndView("common/success", map);
   }

@@ -10,6 +10,7 @@ import com.zhihao.sell.service.ProductService;
 import com.zhihao.sell.utils.ResultVOUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,7 @@ import java.util.List;
 @RestController
 
 /**
- *
+ * Controller BuyerProductController.
  */
 @RequestMapping("/buyer/product")
 public class BuyerProductController {
@@ -34,7 +35,12 @@ public class BuyerProductController {
   @Autowired
   private CategoryService categoryService;
 
+  /**
+   * List all product.
+   * @return all product
+   */
   @GetMapping("/list")
+  @Cacheable(cacheNames = "product", key = "123")
   public ResultVO list() {
 
     // check all the products

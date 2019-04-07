@@ -1,6 +1,7 @@
 package com.zhihao.sell.VO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.Serializable;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,8 +10,10 @@ import java.math.BigDecimal;
  * Information about a product needed to transit to front end. No need to transit stock info.
  */
 @Data
-public class ProductInfoVO {
+public class ProductInfoVO implements Serializable {
 
+
+  private static final long serialVersionUID = -5066554146148536447L;
   // Using JsonProperty to transform the data to front end as "id"
   @JsonProperty("id")
   private String productId;
