@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+// RestController = Response Body (returning data will be written to the browse) + Controller
 @RestController
 @RequestMapping("/buyer/order")
 @Slf4j

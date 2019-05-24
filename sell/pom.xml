@@ -11,7 +11,7 @@
 
   <name>sell</name>
   <description>Demo project for Spring Boot</description>
-
+  <!--Parent of this program, the version control center of all dependencies -->
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
@@ -25,12 +25,15 @@
     <java.version>1.8</java.version>
   </properties>
 
+  <!--Spring Boot extract all the function module into different starter,
+      Import corresponding 'starter' if you needs-->
   <dependencies>
+    <!--Inject all the components needed for the web module-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
-
+    <!--unit test-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
