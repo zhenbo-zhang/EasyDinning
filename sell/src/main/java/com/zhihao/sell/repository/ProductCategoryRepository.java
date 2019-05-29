@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 /**
- * DAO layer of ProductCategory.
+ * DAO layer of ProductCategory. DAO.
  */
 public interface ProductCategoryRepository extends JpaRepository<ProductCategory, Integer> {
 

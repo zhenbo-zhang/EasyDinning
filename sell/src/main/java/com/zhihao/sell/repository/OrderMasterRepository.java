@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Interface OrderMasterRepository.
+ * Interface OrderMasterRepository. DAO.
  */
 public interface OrderMasterRepository extends JpaRepository<OrderMaster, String> {
 

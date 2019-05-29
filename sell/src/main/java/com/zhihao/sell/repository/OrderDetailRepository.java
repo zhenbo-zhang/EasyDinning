@@ -6,7 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 /**
- * Interface OrderDetailRepository.
+ * Interface OrderDetailRepository. DAO (define the interface used to interact with db).
+ * JpaRepository<Object, KeyType>
  */
 public interface OrderDetailRepository extends JpaRepository<OrderDetail, String> {
 

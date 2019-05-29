@@ -9,12 +9,13 @@ import java.math.BigDecimal;
 /**
  * Class OrderDetail, which contains all the information of the details of an order.
  */
+// Entity class, mapping to db table. Map to order_detail by default
 @Entity
 @Data
 public class OrderDetail {
 
   /**
-   * ID of the detail.
+   * ID of the detail. Map to column detail_id by default. The result is the same
    */
   @Id
   private String detailId;

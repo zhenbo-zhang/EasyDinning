@@ -26,7 +26,7 @@ public class ProductCategory {
    * category id.
    */
   @Id // key
-  @GeneratedValue // auto-increment
+  @GeneratedValue // auto-increment key
   private Integer categoryId;
 
   /**
