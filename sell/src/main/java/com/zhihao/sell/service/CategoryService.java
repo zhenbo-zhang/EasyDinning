@@ -5,7 +5,7 @@ import com.zhihao.sell.dataobject.ProductCategory;
 import java.util.List;
 
 /**
- * Interface CategoryService.
+ * Service layer. Interface CategoryService.
  */
 public interface CategoryService {
 
@@ -33,9 +33,9 @@ public interface CategoryService {
   List<ProductCategory> findByCategoryTypeIn(List<Integer> categoryTypeList);
 
   /**
-   * Save the productCategory.
+   * create or update the productCategory.
    *
-   * @param productCategory - the productCategory to save
+   * @param productCategory - the productCategory to save or update
    * @return the saved productCategory
    */
   ProductCategory save(ProductCategory productCategory);

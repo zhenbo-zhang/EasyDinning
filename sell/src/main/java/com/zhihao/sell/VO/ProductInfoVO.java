@@ -7,7 +7,8 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 /**
- * Information about a product needed to transit to front end. No need to transit stock info.
+ * Information about a product needed to transit to front end.
+ * No need to transit stock info. Only send necessary info.
  */
 @Data
 public class ProductInfoVO implements Serializable {

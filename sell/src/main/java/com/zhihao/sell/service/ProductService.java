@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 /**
- * DAO for ProductInfo
+ * Service layer for ProductInfo
  */
 public interface ProductService {
 
@@ -28,7 +28,7 @@ public interface ProductService {
   /**
    * check all orders on sale for pagination.
    *
-   * @return all orders on sale with pagination
+   * @return all orders on sale in a page object. (used for pagination)
    */
   Page<ProductInfo> findAll(Pageable pageable);
 

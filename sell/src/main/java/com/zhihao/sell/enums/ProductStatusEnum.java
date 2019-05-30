@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * Enum ProductStatusEnum.
  */
-@Getter
+@Getter // from lombok, generating getters automatically.
 public enum ProductStatusEnum implements CodeEnum {
   UP(0, "On Sale"),
   DOWN(1, "Off Sale");

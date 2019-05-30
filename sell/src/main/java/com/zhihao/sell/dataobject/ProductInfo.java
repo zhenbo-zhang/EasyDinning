@@ -17,8 +17,11 @@ import org.hibernate.annotations.DynamicUpdate;
 /**
  * Class ProductInfo, contains all the rows of the ProductInfo table in database.
  */
+// Map from product_info to an object
 @Entity
+// Lombok
 @Data
+// update time
 @DynamicUpdate
 public class ProductInfo implements Serializable {
 
@@ -33,7 +36,7 @@ public class ProductInfo implements Serializable {
   private String productName;
 
   /**
-   * price.
+   * price. Use BigDecimal for precise representation of product price in decimal number.
    */
   private BigDecimal productPrice;
 
@@ -77,7 +80,7 @@ public class ProductInfo implements Serializable {
    *
    * @return the status of the product
    */
-  @JsonIgnore
+  @JsonIgnore // don't show the method if the object is returned as json
   public ProductStatusEnum getProductStatusEnum() {
     return EnumUtil.getByCode(productStatus, ProductStatusEnum.class);
   }

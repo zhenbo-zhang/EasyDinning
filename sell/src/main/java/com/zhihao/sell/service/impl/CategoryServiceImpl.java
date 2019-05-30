@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Implementation for CategoryService.
+ * Implementation for the service layer CategoryService.
  */
 @Service
 public class CategoryServiceImpl implements CategoryService {

@@ -37,7 +37,7 @@ public class ProductServiceImplTest {
 
   @Test
   public void findAll() {
-    PageRequest request = new PageRequest(0, 2);
+    PageRequest request = new PageRequest(0, 2);  // page: which page wanted, size: how many entries in one page
     Page<ProductInfo> productInfoPage = productService.findAll(request);
     Assert.assertNotEquals(0, productInfoPage.getTotalElements());
   }

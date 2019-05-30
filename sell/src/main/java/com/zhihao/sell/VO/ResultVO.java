@@ -6,6 +6,9 @@ import lombok.Data;
 
 /*
  * the outer object of http request (which will transform to front end)
+ * ResultVO includes ProductVO, which then includes a list of ProductInfoVO.
+ * Send to front end
+ *
  * Serializable is used for cache
  * */
 @Data

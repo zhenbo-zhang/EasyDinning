@@ -11,7 +11,7 @@ import org.springframework.cache.annotation.EnableCaching;
 // started
 @SpringBootApplication
 @MapperScan(basePackages = "com.zhihao.sell.dataobject.mapper")
-@EnableCaching
+@EnableCaching  // enabling annotation based caching
 public class SellApplication {
 
   public static void main(String[] args) {

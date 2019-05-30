@@ -30,7 +30,7 @@ public class ProductCategoryRepositoryTest {
   }
 
   @Test
-  @Transactional
+  @Transactional  // complete roll back, will not pollute database
   public void saveTest() {
     ProductCategory productCategory = new ProductCategory("girls' favorite", 3);
     ProductCategory result = productCategoryRepository.save(productCategory);

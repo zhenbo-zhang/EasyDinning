@@ -9,18 +9,18 @@ import javax.persistence.Id;
 import java.util.Date;
 
 /**
- * Class ProductCategory, contains all the rows of the ProductCategory table in database.
+ * Class ProductCategory, contains all the information of the product_category table in database.
  */
 
-// Mapping from DB to Java.
+// Mapping data in DB to an object in Java.
 @Entity
 
-// Use to update time.
+// Use to update time automatically.
 @DynamicUpdate
 
-// Lombok annotation, save the trouble of creating getter and setter every time.
+// Lombok annotation, creating getter and setter by default.
 @Data
-public class ProductCategory {
+public class ProductCategory {  // "product_category" in database
 
   /**
    * category id.
