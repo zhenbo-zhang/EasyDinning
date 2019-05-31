@@ -11,8 +11,13 @@ import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Date;
 
+// Map order_master in db to an object
 @Entity
+
+// Lombok, creating getters and setters by default
 @Data
+
+// update time
 @DynamicUpdate
 public class OrderMaster {
 
@@ -43,7 +48,7 @@ public class OrderMaster {
   private String buyerOpenid;
 
   /**
-   * Total amount of the buyer.
+   * Total amount of the buyer. (Big Decimal is precise)
    */
   private BigDecimal orderAmount;
 

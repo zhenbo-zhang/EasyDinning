@@ -45,11 +45,11 @@ public class BuyerProductController {
   @Cacheable(cacheNames = "product", key = "#sellerId", condition = "#sellerId.length() > 3", unless = "#result.getCode() != 0")
   public ResultVO list(@RequestParam("sellerId") String sellerId) {
 
-    // check all the products
+    // check the products that are on sale
 
     List<ProductInfo> productInfoList = productService.findUpAll();
 
-    // check needed categories (once)
+    // check needed categories
 
     List<Integer> categoryTypeList = productInfoList.stream()
         .map(e -> e.getCategoryType())

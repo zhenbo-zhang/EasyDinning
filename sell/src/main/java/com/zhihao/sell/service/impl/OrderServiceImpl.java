@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
 /**
  * Implementation of OrderService.
  */
-
+// controller -> service -> DAO
 @Service
 @Slf4j
 public class OrderServiceImpl implements OrderService {
@@ -52,17 +52,19 @@ public class OrderServiceImpl implements OrderService {
   private WebSocket webSocket;
 
   /**
-   * Create a new order.
+   * Create a new order. Data is given by controller.
    */
   @Override
   // Roll back if there is exception.
   @Transactional
+  // orderDTO is given by controller
   public OrderDTO create(OrderDTO orderDTO) {
 
     String orderId = KeyUtil.genUniqueKey();
     BigDecimal orderAmount = new BigDecimal(BigInteger.ZERO);
 
     // 1. check product(Amount, price)
+    // By now, orderDetail is given by front end, only contains id and amount
     for (OrderDetail orderDetail : orderDTO.getOrderDetailList()) {
       ProductInfo productInfo = productService.findOne(orderDetail.getProductId());
       if (productInfo == null) {
@@ -77,11 +79,13 @@ public class OrderServiceImpl implements OrderService {
       // 3. save order detail
       orderDetail.setDetailId(KeyUtil.genUniqueKey());
       orderDetail.setOrderId(orderId);
+      // orderDetail only contains id and amount, we need to copy name .. to it
       BeanUtils.copyProperties(productInfo, orderDetail);
       orderDetailRepository.save(orderDetail);
     }
 
-    // 4. save data into database（orderMaster和orderDetail）
+    // 4. save data into database（orderMaster, orderDetail）
+    // OrderMaster doesn't contains order details information in db.
     OrderMaster orderMaster = new OrderMaster();
     orderDTO.setOrderId(orderId);
     BeanUtils.copyProperties(orderDTO, orderMaster);

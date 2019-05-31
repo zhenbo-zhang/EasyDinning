@@ -14,7 +14,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Data Transfer Object of Order (to and from front end)
+ * Data Transfer Object of Order (transfer between different layers)
+ * Because we want it to contain orderDetailList, because the OrderMaster object does't have it.
+ * We don't add the field to OrderMaster because in db, table order_master doesn't have this row
  */
 @Data
 public class OrderDTO {

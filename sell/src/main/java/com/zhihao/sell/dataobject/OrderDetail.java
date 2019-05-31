@@ -7,10 +7,12 @@ import javax.persistence.Id;
 import java.math.BigDecimal;
 
 /**
- * Class OrderDetail, which contains all the information of the details of an order.
+ * Entity Class OrderDetail, which contains all the information of the details of an order.
  */
 // Entity class, mapping to db table. Map to order_detail by default
 @Entity
+
+// Lombok, creating getters and setters by default.
 @Data
 public class OrderDetail {
 
