@@ -39,7 +39,7 @@ public class BuyerOrderController {
 
   //Create Order
   @PostMapping("/create")
-  public ResultVO<Map<String, String>> create(@Valid OrderForm orderForm,
+  public ResultVO<Map<String, String>> create(@Valid OrderForm orderForm, // validate form
       BindingResult bindingResult) {
     // check if there are errors after validation
     if (bindingResult.hasErrors()) {

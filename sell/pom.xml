@@ -56,6 +56,7 @@
       <artifactId>lombok</artifactId>
     </dependency>
 
+    <!--Used to transform string to json-->
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>

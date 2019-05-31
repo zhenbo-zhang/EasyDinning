@@ -164,7 +164,7 @@ public class OrderServiceImpl implements OrderService {
       throw new SellException(ResultEnum.ORDER_STATUS_ERROR);
     }
 
-    // chang order status
+    // change order status. If we want to manipulate db, must OrderDTO -> OrderMaster
     orderDTO.setOrderStatus(OrderStatusEnum.CANCEL.getCode());
     BeanUtils.copyProperties(orderDTO, orderMaster);
     OrderMaster updateResult = orderMasterRepository.save(orderMaster);
@@ -178,6 +178,7 @@ public class OrderServiceImpl implements OrderService {
       log.error("【Cancel Order】No Order Detail Available, orderDTO={}", orderDTO);
       throw new SellException(ResultEnum.ORDER_DETAIL_EMPTY);
     }
+    // convert every orderDetail to cartDTO, in order to increase stock
     List<CartDTO> cartDTOList = orderDTO.getOrderDetailList().stream()
         .map(e -> new CartDTO(e.getProductId(), e.getProductQuantity()))
         .collect(Collectors.toList());

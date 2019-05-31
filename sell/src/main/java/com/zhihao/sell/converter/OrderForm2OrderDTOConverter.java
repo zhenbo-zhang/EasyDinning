@@ -33,9 +33,9 @@ public class OrderForm2OrderDTOConverter {
     List<OrderDetail> orderDetailList = new ArrayList<>();
     try {
       orderDetailList = gson.fromJson(orderForm.getItems(),
-          new TypeToken<List<OrderDetail>>() {
+          new TypeToken<List<OrderDetail>>() {  // transform to list
           }.getType());
-    } catch (Exception e) {
+    } catch (Exception e) { // not json format
       log.error("【Object Transform】Unexpected Error, string={}", orderForm.getItems());
       throw new SellException(ResultEnum.PARAM_ERROR);
     }
