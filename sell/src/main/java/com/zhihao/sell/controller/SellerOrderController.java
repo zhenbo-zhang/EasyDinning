@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
-@Controller
+@Controller // return free marker template
 @RequestMapping("/seller/order")
 @Slf4j
 public class SellerOrderController {
@@ -29,7 +29,7 @@ public class SellerOrderController {
    *
    * @param page - page, start from 1
    * @param size - how many data in one page
-   * @param map - a map to store result
+   * @param map - used to send data to template
    * @return the list of order ModelAndView
    */
   @GetMapping("/list")

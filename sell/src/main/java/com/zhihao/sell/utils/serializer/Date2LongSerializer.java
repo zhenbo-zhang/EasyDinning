@@ -10,6 +10,7 @@ import java.util.Date;
 
 /**
  * Utility Class Date2LongSerializer, which is used to convert time to its proper representation.
+ * Used as annotation.
  */
 
 public class Date2LongSerializer extends JsonSerializer<Date> {

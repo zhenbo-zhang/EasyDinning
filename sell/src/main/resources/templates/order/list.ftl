@@ -26,26 +26,25 @@
             </tr>
             </thead>
             <tbody>
-
-                        <#list orderDTOPage.content as orderDTO>
-                        <tr>
-                          <td>${orderDTO.orderId}</td>
-                          <td>${orderDTO.buyerName}</td>
-                          <td>${orderDTO.buyerPhone}</td>
-                          <td>${orderDTO.buyerAddress}</td>
-                          <td>$ ${orderDTO.orderAmount}</td>
-                          <td>${orderDTO.getOrderStatusEnum().message}</td>
-                          <td>${orderDTO.createTime}</td>
-                          <td><a
-                              href="/sell/seller/order/detail?orderId=${orderDTO.orderId}">Detail</a>
-                          </td>
-                          <td>
-                                <#if orderDTO.getOrderStatusEnum().message == "NEW">
-                                  <a href="/sell/seller/order/cancel?orderId=${orderDTO.orderId}">Cancel</a>
-                                </#if>
-                          </td>
-                        </tr>
-                        </#list>
+                <#list orderDTOPage.content as orderDTO>
+                <tr>
+                  <td>${orderDTO.orderId}</td>
+                  <td>${orderDTO.buyerName}</td>
+                  <td>${orderDTO.buyerPhone}</td>
+                  <td>${orderDTO.buyerAddress}</td>
+                  <td>$ ${orderDTO.orderAmount}</td>
+                  <td>${orderDTO.getOrderStatusEnum().message}</td>
+                  <td>${orderDTO.createTime}</td>
+                  <td><a
+                      href="/sell/seller/order/detail?orderId=${orderDTO.orderId}">Detail</a>
+                  </td>
+                  <td>
+                    <#if orderDTO.getOrderStatusEnum().message == "NEW">
+                      <a href="/sell/seller/order/cancel?orderId=${orderDTO.orderId}">Cancel</a>
+                    </#if>
+                  </td>
+                </tr>
+                </#list>
             </tbody>
           </table>
         </div>

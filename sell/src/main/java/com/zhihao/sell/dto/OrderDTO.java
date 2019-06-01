@@ -62,7 +62,8 @@ public class OrderDTO {
   private Integer payStatus;
 
   /**
-   * Create time of the order.
+   * Create time of the order. Using JsonSerialize to convert time to its proper representation
+   * (/1000).
    */
   @JsonSerialize(using = Date2LongSerializer.class)
   private Date createTime;
@@ -75,8 +76,7 @@ public class OrderDTO {
   private Date updateTime;
 
   /**
-   * List of order details. Using JsonSerialize to convert time to its proper representation
-   * (/1000).
+   * List of order details.
    */
   List<OrderDetail> orderDetailList;
 
@@ -85,7 +85,7 @@ public class OrderDTO {
    *
    * @return the Enum Constant based on the order status
    */
-  // This method will be ignored when change to json
+  // This method will be ignored when changed to json
   @JsonIgnore
   public OrderStatusEnum getOrderStatusEnum() {
     return EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
@@ -96,7 +96,7 @@ public class OrderDTO {
    *
    * @return the Enum Constant based on the pay status
    */
-  // This method will be ignored when change to json
+  // This method will be ignored when changed to json
   @JsonIgnore
   public PayStatusEnum getPayStatusEnum() {
     return EnumUtil.getByCode(payStatus, PayStatusEnum.class);

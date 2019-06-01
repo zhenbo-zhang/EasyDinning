@@ -27,6 +27,7 @@
 </body>
 
 <script>
+  <#--redirect automatically-->
   setTimeout('location.href="${url}"', 3000);
 </script>
 

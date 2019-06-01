@@ -27,6 +27,6 @@ public interface OrderService {
   // Pay for the order.
   OrderDTO paid(OrderDTO orderDTO);
 
-  // Find list of orders.
+  // Find list of orders. Used by seller side
   Page<OrderDTO> findList(Pageable pageable);
 }

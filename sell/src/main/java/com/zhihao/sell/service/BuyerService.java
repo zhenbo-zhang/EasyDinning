@@ -7,7 +7,7 @@ import com.zhihao.sell.dto.OrderDTO;
  */
 public interface BuyerService {
 
-  // Check an Order
+  // Check one Order
   OrderDTO findOrderOne(String openid, String orderId);
 
   // Cancel an Order
