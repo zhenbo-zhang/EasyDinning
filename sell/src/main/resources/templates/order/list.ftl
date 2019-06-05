@@ -120,13 +120,13 @@
 <#--Configure websocket client side below-->
 <script>
   var websocket = null;
-  // If websocket exists in the browser
+  // Check whether the browser support websocket
   if ('WebSocket' in window) {
     websocket = new WebSocket('ws://localhost:8080/sell/webSocket');
   } else {
     alert("You browser doesn't support websocket!");
   }
-  // websocket is open
+  // websocket is open (just created)
   websocket.onopen = function (event) {
     console.log('Connected');
   }
@@ -136,12 +136,12 @@
     console.log('Connection Closed');
   }
 
-  // when there is message
+  // when there is a message
   websocket.onmessage = function (event) {
     console.log('Get a Message:' + event.data)
     //pop ups shows, and play music, using jquey
     $('#myModal').modal('show');
-
+    // play music
     document.getElementById('notice').play();
   }
 

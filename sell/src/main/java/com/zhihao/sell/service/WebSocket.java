@@ -21,20 +21,20 @@ public class WebSocket {
   private Session session;
 
   /**
-   * Container that keep all open websocket.
+   * Container that stores all open websocket.
    */
   private static CopyOnWriteArraySet<WebSocket> webSocketSet = new CopyOnWriteArraySet<>();
 
   /**
    * The logic when the websocket is open.
    *
-   * @param session - session
+   * @param session - new created session
    */
   @OnOpen
   public void onOpen(Session session) {
     this.session = session;
     webSocketSet.add(this);
-    log.info("【websocket】New Connection, 总数:{}", webSocketSet.size());
+    log.info("【websocket】New Connection, number:{}", webSocketSet.size());
   }
 
   /**
@@ -43,7 +43,7 @@ public class WebSocket {
   @OnClose
   public void onClose() {
     webSocketSet.remove(this);
-    log.info("【websocket】Connection is off, 总数:{}", webSocketSet.size());
+    log.info("【websocket】Connection is off, number:{}", webSocketSet.size());
   }
 
   /**
@@ -57,7 +57,7 @@ public class WebSocket {
   }
 
   /**
-   * The logic of sending message.
+   * The logic of push notifications.
    *
    * @param - message to send
    */

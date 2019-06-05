@@ -5,7 +5,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 /**
- * Class ProductForm used to handle data submitted from form.
+ * Class ProductForm used to handle data submitted from form (product.index.ftl).
  */
 @Data
 public class ProductForm {
