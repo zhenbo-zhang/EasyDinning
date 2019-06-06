@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
    * @return one Product
    */
   @Override
-  @Cacheable(key = "123")
+  @Cacheable(key = "#productId")
   // if not including key, it will automatically be filled with the argument, which is productId.
   public ProductInfo findOne(String productId) {
     return repository.findOne(productId);
@@ -67,7 +67,7 @@ public class ProductServiceImpl implements ProductService {
    * @return the saved ProductInfo
    */
   @Override
-  @CachePut(key = "123")
+  @CachePut(key = "#productInfo.productId")
   public ProductInfo save(ProductInfo productInfo) {
     return repository.save(productInfo);
   }

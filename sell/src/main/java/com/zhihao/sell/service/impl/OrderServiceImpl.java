@@ -19,6 +19,8 @@ import com.zhihao.sell.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -37,6 +39,7 @@ import java.util.stream.Collectors;
 // controller -> service -> DAO
 @Service
 @Slf4j
+@CacheConfig(cacheNames = "order")
 public class OrderServiceImpl implements OrderService {
 
   @Autowired
@@ -114,6 +117,7 @@ public class OrderServiceImpl implements OrderService {
    * @return a order base on an order id
    */
   @Override
+  @Cacheable(key = "#orderId")
   public OrderDTO findOne(String orderId) {
     // Check whether the order exists or not.
     OrderMaster orderMaster = orderMasterRepository.findOne(orderId);
@@ -138,6 +142,7 @@ public class OrderServiceImpl implements OrderService {
    * @return the list of order
    */
   @Override
+  @Cacheable(key = "#buyerOpenid")
   public Page<OrderDTO> findList(String buyerOpenid, Pageable pageable) {
     Page<OrderMaster> orderMasterPage = orderMasterRepository
         .findByBuyerOpenid(buyerOpenid, pageable);
@@ -258,6 +263,7 @@ public class OrderServiceImpl implements OrderService {
    * @return all the products (Used by seller)
    */
   @Override
+  @Cacheable(key ="255")
   public Page<OrderDTO> findList(Pageable pageable) {
     Page<OrderMaster> orderMasterPage = orderMasterRepository.findAll(pageable);
     List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter

@@ -53,6 +53,7 @@ public class SeckillServiceImpl implements SeckillService {
     return this.queryMap(productId);
   }
 
+  // Distributed lock - just lock a certain product. Atomic lock.
   // Distributed lock based on Redis: http://redis.cn/commands/setnx.html  http://redis.cn/commands/getset.html
   // SETNX - set a key value pair. If key doesn't exist，it equals SET. When key exists, do nothing.
   // GETSET - Get the previous value first, then set the value to a new one. If key doesn't exist, return null, then set value.
@@ -69,7 +70,7 @@ public class SeckillServiceImpl implements SeckillService {
     // 1.Check stock, if 0, end the special offer
     int stockNum = stock.get(productId);
     if (stockNum == 0) {
-      throw new SellException(100, "special offer has finished");
+      throw new SellException(100, "special offer is over now");
     } else {
       // 2.make an order
       orders.put(KeyUtil.genUniqueKey(), productId);

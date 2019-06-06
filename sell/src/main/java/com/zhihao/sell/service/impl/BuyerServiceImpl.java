@@ -7,6 +7,8 @@ import com.zhihao.sell.service.BuyerService;
 import com.zhihao.sell.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
+@CacheConfig(cacheNames = "buyer")
 public class BuyerServiceImpl implements BuyerService {
 
   @Autowired
@@ -27,6 +30,7 @@ public class BuyerServiceImpl implements BuyerService {
    * @return the order with the openid and order id
    */
   @Override
+  @Cacheable(key = "#orderId")
   public OrderDTO findOrderOne(String openid, String orderId) {
     return checkOrderOwner(openid, orderId);
   }

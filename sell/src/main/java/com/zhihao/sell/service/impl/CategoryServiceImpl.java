@@ -4,6 +4,9 @@ import com.zhihao.sell.dataobject.ProductCategory;
 import com.zhihao.sell.repository.ProductCategoryRepository;
 import com.zhihao.sell.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +15,7 @@ import java.util.List;
  * Implementation for the service layer CategoryService.
  */
 @Service
+@CacheConfig(cacheNames = "category")
 public class CategoryServiceImpl implements CategoryService {
 
   // DAO
@@ -25,6 +29,7 @@ public class CategoryServiceImpl implements CategoryService {
    * @return one ProductCategory
    */
   @Override
+  @Cacheable(key = "#categoryId")
   public ProductCategory findOne(Integer categoryId) {
     return repository.findOne(categoryId);
   }
@@ -35,6 +40,7 @@ public class CategoryServiceImpl implements CategoryService {
    * @return all ProductCategories
    */
   @Override
+  @Cacheable(key = "123")
   public List<ProductCategory> findAll() {
     return repository.findAll();
   }
@@ -57,6 +63,7 @@ public class CategoryServiceImpl implements CategoryService {
    * @return the saved productCategory
    */
   @Override
+  @CachePut(key = "#productCategory.categoryId")
   public ProductCategory save(ProductCategory productCategory) {
     return repository.save(productCategory);
   }

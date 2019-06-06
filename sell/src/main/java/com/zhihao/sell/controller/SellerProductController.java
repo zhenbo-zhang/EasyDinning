@@ -140,7 +140,7 @@ public class SellerProductController {
 //  @CachePut(cacheNames = "product", key = "123")
   // This annotation will delete the cache every time the value it is updated.
   // So, the cache will be refreshed when enter the list method again.
-  @CacheEvict(cacheNames = "product", key = "123")
+  @CacheEvict(cacheNames = "product", key = "#form.productId")
   public ModelAndView save(@Valid ProductForm form,
       BindingResult bindingResult,
       Map<String, Object> map) {

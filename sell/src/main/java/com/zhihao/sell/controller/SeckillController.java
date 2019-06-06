@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Controller SeckillController handles the logic the second kill.
+ */
 @RestController
 @RequestMapping("/skill")
 @Slf4j
@@ -28,7 +31,7 @@ public class SeckillController {
   }
 
   /**
-   * Second kill. If successful, the product will be returned.
+   * Second kill. If successful, the product info will be returned.
    *
    * @param productId - the id of the product
    * @return the product

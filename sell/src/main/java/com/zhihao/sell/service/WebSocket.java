@@ -11,7 +11,7 @@ import javax.websocket.server.ServerEndpoint;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
- * The logic of websocket.
+ * The logic of websocket. Used to send message from server to client.
  */
 @Component
 @ServerEndpoint("/webSocket")

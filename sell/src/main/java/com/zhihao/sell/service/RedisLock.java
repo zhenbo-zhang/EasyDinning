@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 /**
- * Class RedisLock, utility class for distributed locking.
+ * Class RedisLock, utility class for distributed lock using redis.
  */
 @Component
 @Slf4j
@@ -26,7 +26,7 @@ public class RedisLock {
    * @param value current time + expiration time
    */
   public boolean lock(String key, String value) {
-    if (stringRedisTemplate.opsForValue().setIfAbsent(key, value)) { //setnx
+    if (stringRedisTemplate.opsForValue().setIfAbsent(key, value)) { //setnx (if not previously set, return true; otherwise, return false)
       // Set the lock successfully (which means key doesn't exist)
       return true;
     }
@@ -42,6 +42,7 @@ public class RedisLock {
 
       // Assuming two threads go into this piece. and the key is already taken. currentValue=A, the values of the two threads are B. The lock expires.
       // One of the two threads will executes getAndSet first. After this，the value becomes B. Only the first thread will get A (and get the lock), the other one will get B.
+      // it can also prevent dead lock if there is a break point in sec kill.
       if (!StringUtils.isEmpty(oldValue) && oldValue.equals(currentValue)) {
         //oldValue is not null, and oldValue == currentValue.
         return true;
