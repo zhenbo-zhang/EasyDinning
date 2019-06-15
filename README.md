@@ -1,4 +1,4 @@
-##### A full-stack web application using MVC architecture for the seller side of takeout websites
+#### EasyEating - A full-stack web application using MVC architecture for the seller side of takeout websites
 
 - Created RESTful API on server side with Spring Boot and applied SLF4J and Logback to record system logs 
 
@@ -16,3 +16,10 @@
 2. Click "run" button
 3. Backend URL: http://127.0.0.1:8080/sell/seller/order/list
 4. Frontend URL: 192.168.0.113/#/order (sell.com/#/)
+
+
+
+##### Related information:
+
+- If you want to see the SQL for creating tables in MySQL database, please refer to sell.sql 
+- For clients to placing orders, API are listed in API.md
